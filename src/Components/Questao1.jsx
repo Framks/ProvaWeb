@@ -6,12 +6,38 @@ const Questao01A = () => {
     ]
     
     return(
-        <Questao01B lista={lista}/>
+        <>
+            <h1>Questão 01</h1>
+            <Questao01B lista={lista}/>
+        </>
+    )
+}
+    
+function Questao01B({lista}){
+    const calcularMaior = () =>{
+        const resultado = lista.map(
+            (linha) => {
+                let v= 0
+                if(linha.a > linha.b && linha.a > linha.c)
+                    v = linha.a
+                else if (linha.b > linha.a && linha.b > linha.c) {
+                    v = linha.b
+                } else if(linha.c > linha.a && linha.c > linha.b){
+                    v = linha.c                    
+                }
+                return(
+                    <p>Maior: {v}</p>
+                )
+            }
+        )
+        return resultado;
+    }
+
+    return(
+        <>
+            {calcularMaior()}
+        </>
     )
 }
 
-function Questao01B(lista){
-
-}
-
-export default {Questao01A, Questao01B};
+export {Questao01A, Questao01B};
