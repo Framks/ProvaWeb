@@ -21,18 +21,28 @@ const Questao04 = () =>  {
     const[maior, setMaior] = useState({"capital":[""],"population":0});
     const[menor, setMenor] = useState({"capital":[""],"population":7999999999});
 
-    const setarDados = (elemento) => {
-        if(elemento.population > maior.population){
-            setMaior(elemento)
-        } else if((elemento.population) < menor.population){
-            setMenor(elemento)
-        }
+    const maiores = (l) => {
+        let u = 0
+        let elemento
+        l.map(l => {if(l.population > u){
+            u = l.population
+            elemento = l
+        }})
+        setMaior(elemento)
+        let x = 99999999999
+        let element
+        l.map(l => {if(l.population < x){
+            x = l.population
+            element = l
+        }})
+        setMenor(element)
+        return u
     }
     
     const buscarCidades = async () =>{
         try{
             const json = await MinhaPromessa
-            json.map(setarDados)
+            let m = maiores(json)
         }catch (error){ 
             console.log(error)
         }
