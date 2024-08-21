@@ -1,3 +1,6 @@
+// Neste codigo esta sendo usado o props para fazer a passagem de uma vetor de objetos
+// neste vetor de objetos que foi passado para Questao01B, estamos fazendo uma verificação de 
+// qual das 3 propriedades são maiores. e retornando dentro de uma tag p o maior entre eles 
 const Questao01A = () => {
     const lista = [
         {a:10, b:3, c: 7},
@@ -12,7 +15,7 @@ const Questao01A = () => {
         </>
     )
 }
-    
+
 function Questao01B({lista}){
     const calcularMaior = () =>{
         const resultado = lista.map(
@@ -32,11 +35,10 @@ function Questao01B({lista}){
         )
         return resultado;
     }
-
     return(
-        <>
+        <div>
             {calcularMaior()}
-        </>
+        </div>
     )
 }
 

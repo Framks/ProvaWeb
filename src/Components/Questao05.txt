@@ -1,0 +1,19 @@
+O contexto resolve pois não é precisso ficar enviando os dados pelo props de elemento por elemento até o que vai ser usado
+podemos enviar diretamente ao que vai usar, gerantindo a consistencia dos dados.
+
+ex.:
+
+        A 
+        |
+        |
+    ---------
+    |       |
+    v       V
+    B       D
+    |
+-------
+V      V
+C      G
+
+para enviar um dado para G o A precisaria enviar para B e o B para o G
+com o contexto o conteudo não precisaria passar pelo B
