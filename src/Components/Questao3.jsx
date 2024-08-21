@@ -25,7 +25,6 @@ const Questao03 = () =>  {
             element = l
         }})
         setMenor(element)
-        return u
     }
     
     const buscarCidades = async () =>{
@@ -33,7 +32,7 @@ const Questao03 = () =>  {
             const response = await fetch("https://restcountries.com/v3.1/region/europe?fields=capital,population")
             const json  = await response.json()
             console.log(json)
-            let m = maiores(json)
+            maiores(json)
         }catch (error){ 
             console.log(error)
         }

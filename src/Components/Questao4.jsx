@@ -37,13 +37,12 @@ const Questao04 = () =>  {
             element = l
         }})
         setMenor(element)
-        return u
     }
     
     const buscarCidades = async () =>{
         try{
             const json = await MinhaPromessa
-            let m = maiores(json)
+            maiores(json)
         }catch (error){ 
             console.log(error)
         }
