@@ -7,7 +7,6 @@ const Questao01A = () => {
         {a:5, b:-3, c: 9},
         {a:1, b:9, c: 40}
     ]
-    
     return(
         <>
             <h1>Questão 01</h1>
@@ -29,7 +28,9 @@ function Questao01B({lista}){
                     v = linha.c                    
                 }
                 return(
-                    <p>Maior: {v}</p>
+                    <>
+                        <p>Maior: {v}</p>
+                    </>
                 )
             }
         )

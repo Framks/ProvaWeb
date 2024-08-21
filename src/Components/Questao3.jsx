@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react"
-import { json } from "react-router-dom";
 
 
 // estamos utilizando o feth para fazer a requisiçao de buscar as capitais e as populações nelas
@@ -10,29 +9,31 @@ const Questao03 = () =>  {
     const[maior, setMaior] = useState({"capital":[""],"population":0});
     const[menor, setMenor] = useState({"capital":[""],"population":7999999999});
 
-    const maiores = (l) => {
-        let u = 0
+    const verificar = (cites) => {
+        let maior = 0
+        let menor = 99999999999
         let elemento
-        l.map(l => {if(l.population > u){
-            u = l.population
-            elemento = l
-        }})
+        cites.map((cite)=> {
+            if(cite.population > maior){
+                maior = cite.population
+                elemento = cite
+            }
+        })
         setMaior(elemento)
-        let x = 99999999999
-        let element
-        l.map(l => {if(l.population < x){
-            x = l.population
-            element = l
-        }})
-        setMenor(element)
+        cites.map((cite)=> {
+            if(cite.population < menor){
+                menor = cite.population
+                elemento = cite
+            }
+        })
+        setMenor(elemento)
     }
-    
+     
     const buscarCidades = async () =>{
         try{
             const response = await fetch("https://restcountries.com/v3.1/region/europe?fields=capital,population")
-            const json  = await response.json()
-            console.log(json)
-            maiores(json)
+            const va = await response.json()
+            verificar(va)
         }catch (error){ 
             console.log(error)
         }

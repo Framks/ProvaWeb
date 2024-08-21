@@ -4,16 +4,14 @@ import { useEffect, useState } from "react"
 // se a resposta não for obitida nós possamos fazer uma rejeisão dela
 
 const MinhaPromessa = new Promise(
-    (resolve, reject) => {
-        // computção de x segundos .. 
-        // tem x segundo para executar
-        setTimeout(()=>{
-            const response = fetch("https://restcountries.com/v3.1/region/europe?fields=capital,population")
-            const json = response.json()
-            console.log(json)
-            return json
-        }, 4000
-           )
+    async (resolve, reject) => {
+        try{
+            const response = await fetch("https://restcountries.com/v3.1/region/europe?fields=capital,population");
+            const json = await response.json()
+            resolve(json)
+        }catch(error){
+            reject(error)
+        }
     }
 )
 
@@ -22,30 +20,29 @@ const Questao04 = () =>  {
     const[maior, setMaior] = useState({"capital":[""],"population":0});
     const[menor, setMenor] = useState({"capital":[""],"population":7999999999});
 
-    const maiores = (l) => {
-        let u = 0
+    const verificar = (cites) => {
+        let maior = 0
+        let menor = 99999999999
         let elemento
-        l.map(l => {if(l.population > u){
-            u = l.population
-            elemento = l
-        }})
+        cites.map(function(cite) {
+            if(cite.population > maior){
+                maior = cite.population
+                elemento = cite
+            }
+        })
         setMaior(elemento)
-        let x = 99999999999
-        let element
-        l.map(l => {if(l.population < x){
-            x = l.population
-            element = l
-        }})
-        setMenor(element)
+        cites.map(function(cite) {
+            if(cite.population < menor){
+                menor = cite.population
+                elemento = cite
+            }
+        })
+        setMenor(elemento)
     }
     
     const buscarCidades = async () =>{
-        try{
-            const json = await MinhaPromessa
-            maiores(json)
-        }catch (error){ 
-            console.log(error)
-        }
+        MinhaPromessa.then((json) => { verificar(json)})
+            .catch((error) => {console.log(error)})
     }
     
     useEffect(
@@ -65,4 +62,4 @@ const Questao04 = () =>  {
     )
 }
     
-export default Questao04;    
+export default Questao04;
