@@ -11,6 +11,7 @@ const MinhaPromessa = new Promise(
             const response = fetch("https://restcountries.com/v3.1/region/europe?fields=capital,population")
             const json = response.json()
             console.log(json)
+            return json
         }, 4000
            )
     }
